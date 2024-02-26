@@ -4,7 +4,12 @@ import { data } from "autoprefixer";
 
 const AddTaskModal = ({ isOpen, setIsOpen }) => {
 
-  const {register,handleSubmit} = useForm()
+  const {register,handleSubmit,reset} = useForm()
+
+  const onCancel=()=>{
+    reset()
+    setIsOpen(false)
+  }
 
   const onSubmit = (data) =>{
     console.log(data);
