@@ -12,7 +12,8 @@ import {createSlice} from '@reduxjs/toolkit'
       assignedTo: 'Mir Hussain',
       priority: 'high',
     }
-  ]
+  ],
+  userSpecificTasks:[]
  }
 
 const taskSlice = createSlice({
@@ -33,12 +34,18 @@ const taskSlice = createSlice({
     updateStatus:(state,{payload})=>{
       const target= state.tasks.find((item)=>item.id===payload.id)
       target.status = payload.status
+    },
+    userTasks: (state,{payload})=>{
+       state.userSpecificTasks = state.tasks.filter(
+        (item)=>item.assignedTo ===payload
+       )
     }
+
 
   }
 })
 
-export const {addTask,removeTask,updateStatus} =taskSlice.actions
+export const {addTask,removeTask,updateStatus,userTasks} =taskSlice.actions
 
 export default taskSlice.reducer
 
